@@ -9,7 +9,11 @@ import java.lang.annotation.Target;
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface OwnerName {
-    String value();
+@Target(ElementType.TYPE)
+public @interface PersonalInfo {
+    OwnerName ownerName();
+    OwnerDescription ownerDescription();
+    Email email();
+    Website website();
+    PhoneNumber phoneNumber();
 }
