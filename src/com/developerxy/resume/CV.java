@@ -1,8 +1,13 @@
 package com.developerxy.resume;
 
+import com.developerxy.resume.models.ExperienceModel;
 import com.developerxy.resume.models.PersonalInfoModel;
+import com.developerxy.resume.sections.exp.Experience;
+import com.developerxy.resume.sections.exp.Experiences;
 import com.developerxy.resume.sections.personal.PersonalInfo;
 import com.developerxy.resume.util.HTMLWriter;
+
+import java.util.Arrays;
 
 /**
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
@@ -22,8 +27,11 @@ public abstract class CV {
                     .writeOpeningTagWithClass("div", "wrapper");
 
             writePersonalInfo(cls);
+            htmlWriter.writeOpeningTagWithClass("div", "main");
+            writeSections(cls);
 
             htmlWriter.writeClosingTag("div")
+                    .writeClosingTag("div")
                     .writeClosingTag("body")
                     .writeClosingTag("html");
         } catch (Exception e) {
@@ -34,6 +42,46 @@ public abstract class CV {
     private void writePersonalInfo(Class<?> cls) {
         htmlWriter.writeContent(getFormattedHeader(
                 new PersonalInfoModel(cls.getAnnotation(PersonalInfo.class))));
+    }
+
+    private void writeSections(Class<?> cls) {
+        writeExperiences(cls);
+    }
+
+    private void writeExperiences(Class<?> cls) {
+        htmlWriter.writeOpeningTagWithClass("div", "section")
+                .writeOpeningTagWithClass("div", "label")
+                .writeContent("Expérience")
+                .writeClosingTag("div")
+                .writeOpeningTagWithClass("div", "content-wrapper");
+
+        Experience[] experiences = cls.getAnnotation(Experiences.class).value();
+        Arrays.asList(experiences).forEach(this::writeExperience);
+
+        htmlWriter.writeClosingTag("div")
+                .writeClosingTag("div");
+    }
+
+    private void writeExperience(Experience experience) {
+        htmlWriter.writeContent(getFormattedExperienceText(
+                new ExperienceModel(experience)));
+    }
+
+    private String getFormattedExperienceText(ExperienceModel model) {
+        return String.format("<div class=\"content row\">\n" +
+                "                            <span class=\"title\">\n" +
+                "                                %s\n" +
+                "                            </span>\n" +
+                "                            <br/>\n" +
+                "                            <span class=\"date\">\n" +
+                "                                %s\n" +
+                "                            </span>\n" +
+                "                            <br/>\n" +
+                "                            <span class=\"text\">\n" +
+                "                                %s\n" +
+                "                            </span>\n" +
+                "                        </div>",
+                model.getTitle(), model.getWhen(), model.getDescription());
     }
 
     private String getHeadRawText() {
