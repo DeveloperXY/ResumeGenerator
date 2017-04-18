@@ -7,28 +7,20 @@ import com.developerxy.resume.util.HTMLWriter;
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
  */
 public abstract class CV {
+
+    private HTMLWriter htmlWriter;
+
     public void build() {
         Class<?> cls = getClass();
         try (HTMLWriter htmlWriter = new HTMLWriter("resources/index.html")) {
+            this.htmlWriter = htmlWriter;
             htmlWriter.setDoctype()
                     .writeOpeningTag("html")
-                    .writeContent(getHead())
+                    .writeContent(getHeadRawText())
                     .writeOpeningTag("body")
                     .writeOpeningTagWithClass("div", "wrapper");
 
-            PersonalInfo personalInfo = cls.getAnnotation(PersonalInfo.class);
-            OwnerName ownerName = personalInfo.ownerName();
-            OwnerDescription ownerDescription = personalInfo.ownerDescription();
-            Email email = personalInfo.email();
-            Website website = personalInfo.website();
-            PhoneNumber phoneNumber = personalInfo.phoneNumber();
-            htmlWriter.writeContent(getFormattedHeader(
-                    ownerName.value(),
-                    ownerDescription.value(),
-                    email.value(),
-                    website.value(),
-                    phoneNumber.value()
-            ));
+            writePersonalInfo(cls);
 
             htmlWriter.writeClosingTag("div")
                     .writeClosingTag("body")
@@ -38,7 +30,23 @@ public abstract class CV {
         }
     }
 
-    private String getHead() {
+    private void writePersonalInfo(Class<?> cls) {
+        PersonalInfo personalInfo = cls.getAnnotation(PersonalInfo.class);
+        OwnerName ownerName = personalInfo.ownerName();
+        OwnerDescription ownerDescription = personalInfo.ownerDescription();
+        Email email = personalInfo.email();
+        Website website = personalInfo.website();
+        PhoneNumber phoneNumber = personalInfo.phoneNumber();
+        htmlWriter.writeContent(getFormattedHeader(
+                ownerName.value(),
+                ownerDescription.value(),
+                email.value(),
+                website.value(),
+                phoneNumber.value())
+        );
+    }
+
+    private String getHeadRawText() {
         return "<head>\n" +
                 "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
                 "        <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet'\n" +
