@@ -1,6 +1,7 @@
 package com.developerxy.resume;
 
-import com.developerxy.resume.sections.personal.*;
+import com.developerxy.resume.models.PersonalInfoModel;
+import com.developerxy.resume.sections.personal.PersonalInfo;
 import com.developerxy.resume.util.HTMLWriter;
 
 /**
@@ -31,19 +32,8 @@ public abstract class CV {
     }
 
     private void writePersonalInfo(Class<?> cls) {
-        PersonalInfo personalInfo = cls.getAnnotation(PersonalInfo.class);
-        OwnerName ownerName = personalInfo.ownerName();
-        OwnerDescription ownerDescription = personalInfo.ownerDescription();
-        Email email = personalInfo.email();
-        Website website = personalInfo.website();
-        PhoneNumber phoneNumber = personalInfo.phoneNumber();
         htmlWriter.writeContent(getFormattedHeader(
-                ownerName.value(),
-                ownerDescription.value(),
-                email.value(),
-                website.value(),
-                phoneNumber.value())
-        );
+                new PersonalInfoModel(cls.getAnnotation(PersonalInfo.class))));
     }
 
     private String getHeadRawText() {
@@ -55,8 +45,7 @@ public abstract class CV {
                 "    </head>";
     }
 
-    private String getFormattedHeader(String ownerName, String ownerDescription,
-                                      String email, String website, String phoneNumber) {
+    private String getFormattedHeader(PersonalInfoModel model) {
         return String.format("<div class=\"header\">\n" +
                         "                <div class=\"profile_image\"></div>\n" +
                         "                <div class=\"name\">\n" +
@@ -69,6 +58,7 @@ public abstract class CV {
                         "                    <span>m: %s</span>\n" +
                         "                </div>\n" +
                         "            </div>",
-                ownerName, ownerDescription, email, website, phoneNumber);
+                model.getOwnerName(), model.getOwnerDescription(), model.getEmail(),
+                model.getWebsite(), model.getPhoneNumber());
     }
 }
