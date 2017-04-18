@@ -13,50 +13,30 @@ public class PersonalInfoModel {
     private String phoneNumber;
 
     public PersonalInfoModel(PersonalInfo personalInfo) {
-        this.ownerName = personalInfo.ownerName().value();
-        this.ownerDescription = personalInfo.ownerDescription().value();
-        this.email = personalInfo.email().value();
-        this.website = personalInfo.website().value();
-        this.phoneNumber = personalInfo.phoneNumber().value();
+        ownerName = personalInfo.ownerName().value();
+        ownerDescription = personalInfo.ownerDescription().value();
+        email = personalInfo.email().value();
+        website = personalInfo.website().value();
+        phoneNumber = personalInfo.phoneNumber().value();
     }
 
     public String getOwnerName() {
         return ownerName;
     }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-
     public String getOwnerDescription() {
         return ownerDescription;
-    }
-
-    public void setOwnerDescription(String ownerDescription) {
-        this.ownerDescription = ownerDescription;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getWebsite() {
         return website;
     }
 
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 }
