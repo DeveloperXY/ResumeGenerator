@@ -1,8 +1,11 @@
 package com.developerxy.resume;
 
+import com.developerxy.resume.models.AccountModel;
 import com.developerxy.resume.models.ExperienceModel;
 import com.developerxy.resume.models.FormationModel;
 import com.developerxy.resume.models.PersonalInfoModel;
+import com.developerxy.resume.sections.acc.Account;
+import com.developerxy.resume.sections.acc.Accounts;
 import com.developerxy.resume.sections.exp.Experience;
 import com.developerxy.resume.sections.exp.Experiences;
 import com.developerxy.resume.sections.formation.Formation;
@@ -50,6 +53,7 @@ public abstract class CV {
     private void writeSections(Class<?> cls) {
         writeExperiences(cls);
         writeFormations(cls);
+        writeAccounts(cls);
     }
 
     private void writeSectionHeader(String label) {
@@ -90,6 +94,18 @@ public abstract class CV {
                 new FormationModel(formation)));
     }
 
+    private void writeAccounts(Class<?> cls) {
+        htmlWriter.writeOpeningTagWithClass("div", "section");
+        Account[] accounts = cls.getAnnotation(Accounts.class).value();
+        Arrays.asList(accounts).forEach(this::writeAccount);
+        htmlWriter.writeClosingTag("div");
+    }
+
+    private void writeAccount(Account account) {
+        htmlWriter.writeContent(getFormattedAccountText(
+                new AccountModel(account)));
+    }
+
     private String getFormattedExperienceText(ExperienceModel model) {
         return String.format("<div class=\"content row\">\n" +
                 "                            <span class=\"title\">\n" +
@@ -106,6 +122,7 @@ public abstract class CV {
                 "                        </div>",
                 model.getTitle(), model.getWhen(), model.getDescription());
     }
+
     private String getFormattedFormationText(FormationModel model) {
         return String.format("<div class=\"content row\">\n" +
                         "                            <span class=\"title keyword\">\n" +
@@ -117,6 +134,14 @@ public abstract class CV {
                         "                            </span>\n" +
                         "                        </div>",
                 model.getWhen(), model.getDescription());
+    }
+
+    private String getFormattedAccountText(AccountModel model) {
+        return String.format("<div class=\"social\">\n" +
+                        "                        <img class=\"social-icon\" src=\"%s\">\n" +
+                        "                        <span class=\"social-nickname\">@%s</span>\n" +
+                        "                    </div>",
+                model.getIcon(), model.getNickname());
     }
 
     private String getHeadRawText() {
