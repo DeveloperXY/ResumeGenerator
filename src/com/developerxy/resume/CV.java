@@ -1,9 +1,7 @@
 package com.developerxy.resume;
 
 import com.developerxy.resume.sections.personal.*;
-
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import com.developerxy.resume.util.HTMLWriter;
 
 /**
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
@@ -11,38 +9,33 @@ import java.io.PrintWriter;
 public abstract class CV {
     public void build() {
         Class<?> cls = getClass();
-        PrintWriter out;
-        try {
-            out = new PrintWriter("resources/index.html");
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println(getHead());
-            out.println("<body>");
-            out.println("<div class=\"wrapper\">");
-        } catch (FileNotFoundException e) {
+        try (HTMLWriter htmlWriter = new HTMLWriter("resources/index.html")) {
+            htmlWriter.setDoctype()
+                    .writeOpeningTag("html")
+                    .writeContent(getHead())
+                    .writeOpeningTag("body")
+                    .writeOpeningTagWithClass("div", "wrapper");
+
+            PersonalInfo personalInfo = cls.getAnnotation(PersonalInfo.class);
+            OwnerName ownerName = personalInfo.ownerName();
+            OwnerDescription ownerDescription = personalInfo.ownerDescription();
+            Email email = personalInfo.email();
+            Website website = personalInfo.website();
+            PhoneNumber phoneNumber = personalInfo.phoneNumber();
+            htmlWriter.writeContent(getFormattedHeader(
+                    ownerName.value(),
+                    ownerDescription.value(),
+                    email.value(),
+                    website.value(),
+                    phoneNumber.value()
+            ));
+
+            htmlWriter.writeClosingTag("div")
+                    .writeClosingTag("body")
+                    .writeClosingTag("html");
+        } catch (Exception e) {
             e.printStackTrace();
-            return;
         }
-
-        PersonalInfo personalInfo = cls.getAnnotation(PersonalInfo.class);
-        OwnerName ownerName = personalInfo.ownerName();
-        OwnerDescription ownerDescription = personalInfo.ownerDescription();
-        Email email = personalInfo.email();
-        Website website = personalInfo.website();
-        PhoneNumber phoneNumber = personalInfo.phoneNumber();
-        out.println(getFormattedHeader(
-                ownerName.value(),
-                ownerDescription.value(),
-                email.value(),
-                website.value(),
-                phoneNumber.value()
-        ));
-
-        out.println("</div>"); // end of wrapper div
-        out.println("</body>");
-        out.println("</html>");
-
-        out.close();
     }
 
     private String getHead() {
