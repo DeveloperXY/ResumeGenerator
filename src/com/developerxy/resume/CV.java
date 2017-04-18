@@ -1,9 +1,6 @@
 package com.developerxy.resume;
 
-import com.developerxy.resume.models.AccountModel;
-import com.developerxy.resume.models.ExperienceModel;
-import com.developerxy.resume.models.FormationModel;
-import com.developerxy.resume.models.PersonalInfoModel;
+import com.developerxy.resume.models.*;
 import com.developerxy.resume.sections.acc.Account;
 import com.developerxy.resume.sections.acc.Accounts;
 import com.developerxy.resume.sections.exp.Experience;
@@ -11,6 +8,8 @@ import com.developerxy.resume.sections.exp.Experiences;
 import com.developerxy.resume.sections.formation.Formation;
 import com.developerxy.resume.sections.formation.Formations;
 import com.developerxy.resume.sections.personal.PersonalInfo;
+import com.developerxy.resume.sections.proj.Project;
+import com.developerxy.resume.sections.proj.Projects;
 import com.developerxy.resume.util.HTMLWriter;
 
 import java.util.Arrays;
@@ -53,6 +52,7 @@ public abstract class CV {
     private void writeSections(Class<?> cls) {
         writeExperiences(cls);
         writeFormations(cls);
+        writeProjects(cls);
         writeAccounts(cls);
     }
 
@@ -106,20 +106,37 @@ public abstract class CV {
                 new AccountModel(account)));
     }
 
+    private void writeProjects(Class<?> cls) {
+        writeSectionHeader("Projets réalisés");
+        htmlWriter.writeOpeningTagWithClass("div", "content");
+
+        Project[] projects = cls.getAnnotation(Projects.class).value();
+        Arrays.asList(projects).forEach(this::writeProject);
+
+        htmlWriter.writeClosingTag("div")
+                .writeClosingTag("div")
+                .writeClosingTag("div");
+    }
+
+    private void writeProject(Project project) {
+        htmlWriter.writeContent(getFormattedProjectText(
+                new ProjectModel(project)));
+    }
+
     private String getFormattedExperienceText(ExperienceModel model) {
         return String.format("<div class=\"content row\">\n" +
-                "                            <span class=\"title\">\n" +
-                "                                %s\n" +
-                "                            </span>\n" +
-                "                            <br/>\n" +
-                "                            <span class=\"date\">\n" +
-                "                                %s\n" +
-                "                            </span>\n" +
-                "                            <br/>\n" +
-                "                            <span class=\"text\">\n" +
-                "                                %s\n" +
-                "                            </span>\n" +
-                "                        </div>",
+                        "                            <span class=\"title\">\n" +
+                        "                                %s\n" +
+                        "                            </span>\n" +
+                        "                            <br/>\n" +
+                        "                            <span class=\"date\">\n" +
+                        "                                %s\n" +
+                        "                            </span>\n" +
+                        "                            <br/>\n" +
+                        "                            <span class=\"text\">\n" +
+                        "                                %s\n" +
+                        "                            </span>\n" +
+                        "                        </div>",
                 model.getTitle(), model.getWhen(), model.getDescription());
     }
 
@@ -142,6 +159,11 @@ public abstract class CV {
                         "                        <span class=\"social-nickname\">@%s</span>\n" +
                         "                    </div>",
                 model.getIcon(), model.getNickname());
+    }
+
+    private String getFormattedProjectText(ProjectModel model) {
+        return String.format("<div class=\"text row\"><span class=\"keyword\">%s</span>, %s</div>",
+                model.getName(), model.getDescription());
     }
 
     private String getHeadRawText() {
