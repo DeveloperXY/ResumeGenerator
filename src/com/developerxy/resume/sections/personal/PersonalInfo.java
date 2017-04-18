@@ -9,9 +9,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface PersonalInfo {
-    OwnerName ownerName();
-    OwnerDescription ownerDescription();
-    Email email();
-    Website website();
-    PhoneNumber phoneNumber();
+    String ownerName();
+    String ownerDescription();
+    String email();
+    String website();
+    String phoneNumber();
 }

@@ -13,11 +13,11 @@ public class PersonalInfoModel {
     private String phoneNumber;
 
     public PersonalInfoModel(PersonalInfo personalInfo) {
-        ownerName = personalInfo.ownerName().value();
-        ownerDescription = personalInfo.ownerDescription().value();
-        email = personalInfo.email().value();
-        website = personalInfo.website().value();
-        phoneNumber = personalInfo.phoneNumber().value();
+        ownerName = personalInfo.ownerName();
+        ownerDescription = personalInfo.ownerDescription();
+        email = personalInfo.email();
+        website = personalInfo.website();
+        phoneNumber = personalInfo.phoneNumber();
     }
 
     public String getOwnerName() {

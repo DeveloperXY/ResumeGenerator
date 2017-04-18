@@ -11,16 +11,18 @@ import com.developerxy.resume.sections.proj.Project;
 import com.developerxy.resume.sections.proj.Projects;
 import com.developerxy.resume.sections.skill.Skills;
 import com.developerxy.resume.sections.skill.Skill;
+import com.developerxy.resume.util.Output;
 
 /**
  * Created by Mohammed Aouf ZOUAG on 18/04/2017.
  */
+@Output("resources/home.html")
 @PersonalInfo(
-        ownerName = @OwnerName("Mohammed Aouf ZOUAG"),
-        ownerDescription = @OwnerDescription("Développeur Java/Android"),
-        email = @Email("mohammedaoufzouag@outlook.com"),
-        website = @Website("www.developerxy.io"),
-        phoneNumber = @PhoneNumber("+212694363053")
+        ownerName = "Mohammed Aouf ZOUAG",
+        ownerDescription = "Développeur Java/Android",
+        email = "mohammedaoufzouag@outlook.com",
+        website = "www.developerxy.io",
+        phoneNumber = "+212694363053"
 )
 @Experiences({
         @Experience(title = "Stage de fin d'études (LP) à OctaGen ",
@@ -57,7 +59,7 @@ import com.developerxy.resume.sections.skill.Skill;
         @Skill(name = "Web", related = {"PHP", "Node.js", "Express", "React.js", "Gulp", "Bower", "NPM"}),
         @Skill(name = "SGBDs", related = {"MySQL", "Oracle"}),
         @Skill(name = "NoSQL", related = {"MongoDB", "Firebase"}),
-        @Skill(name = "VCS", related = {"Git"}),
+        @Skill(name = "VCS", related = "Git"),
         @Skill(name = "Systèmes de construction", related = {"Maven", "Gradle"})
 })
 @Accounts({

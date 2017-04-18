@@ -13,6 +13,7 @@ import com.developerxy.resume.sections.proj.Projects;
 import com.developerxy.resume.sections.skill.Skill;
 import com.developerxy.resume.sections.skill.Skills;
 import com.developerxy.resume.util.HTMLWriter;
+import com.developerxy.resume.util.Output;
 
 import java.util.Arrays;
 import java.util.StringJoiner;
@@ -23,10 +24,14 @@ import java.util.StringJoiner;
 public abstract class CV {
 
     private HTMLWriter htmlWriter;
+    private String outputLocation;
 
     public void build() {
         Class<?> cls = getClass();
-        try (HTMLWriter htmlWriter = new HTMLWriter("resources/index.html")) {
+        String outputLocation = cls.getAnnotation(Output.class).value();
+        this.outputLocation = outputLocation;
+
+        try (HTMLWriter htmlWriter = new HTMLWriter(outputLocation)) {
             this.htmlWriter = htmlWriter;
             htmlWriter.setDoctype()
                     .writeOpeningTag("html")
@@ -43,7 +48,8 @@ public abstract class CV {
                     .writeClosingTag("body")
                     .writeClosingTag("html");
 
-            System.out.println("The resume has been successfully created");
+            System.out.println(String.format(
+                    "The resume has been successfully created in the following location: %s", outputLocation));
         } catch (Exception e) {
             System.err.println("An error occured while generating the resume.");
             e.printStackTrace();
