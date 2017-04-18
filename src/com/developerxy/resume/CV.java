@@ -10,9 +10,12 @@ import com.developerxy.resume.sections.formation.Formations;
 import com.developerxy.resume.sections.personal.PersonalInfo;
 import com.developerxy.resume.sections.proj.Project;
 import com.developerxy.resume.sections.proj.Projects;
+import com.developerxy.resume.sections.skill.Skill;
+import com.developerxy.resume.sections.skill.Skills;
 import com.developerxy.resume.util.HTMLWriter;
 
 import java.util.Arrays;
+import java.util.StringJoiner;
 
 /**
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
@@ -39,7 +42,10 @@ public abstract class CV {
                     .writeClosingTag("div")
                     .writeClosingTag("body")
                     .writeClosingTag("html");
+
+            System.out.println("The resume has been successfully created");
         } catch (Exception e) {
+            System.err.println("An error occured while generating the resume.");
             e.printStackTrace();
         }
     }
@@ -53,6 +59,7 @@ public abstract class CV {
         writeExperiences(cls);
         writeFormations(cls);
         writeProjects(cls);
+        writeSkills(cls);
         writeAccounts(cls);
     }
 
@@ -123,6 +130,23 @@ public abstract class CV {
                 new ProjectModel(project)));
     }
 
+    private void writeSkills(Class<?> cls) {
+        writeSectionHeader("Compétences");
+        htmlWriter.writeOpeningTagWithClass("div", "content");
+
+        Skill[] skills = cls.getAnnotation(Skills.class).value();
+        Arrays.asList(skills).forEach(this::writeSkill);
+
+        htmlWriter.writeClosingTag("div")
+                .writeClosingTag("div")
+                .writeClosingTag("div");
+    }
+
+    private void writeSkill(Skill skill) {
+        htmlWriter.writeContent(getFormattedSkillText(
+                new SkillsModel(skill)));
+    }
+
     private String getFormattedExperienceText(ExperienceModel model) {
         return String.format("<div class=\"content row\">\n" +
                         "                            <span class=\"title\">\n" +
@@ -164,6 +188,14 @@ public abstract class CV {
     private String getFormattedProjectText(ProjectModel model) {
         return String.format("<div class=\"text row\"><span class=\"keyword\">%s</span>, %s</div>",
                 model.getName(), model.getDescription());
+    }
+
+    private String getFormattedSkillText(SkillsModel model) {
+        StringJoiner sj = new StringJoiner(", ");
+        Arrays.asList(model.getRelated())
+                .forEach(item -> sj.add(String.format("<span>%s</span>\n", item)));
+
+        return String.format("<div class=\"row\">\n<span class=\"keyword\">%s: </span>%s</div>", model.getName(), sj.toString());
     }
 
     private String getHeadRawText() {

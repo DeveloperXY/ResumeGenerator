@@ -10,14 +10,14 @@ import com.developerxy.resume.sections.personal.*;
 import com.developerxy.resume.sections.proj.Project;
 import com.developerxy.resume.sections.proj.Projects;
 import com.developerxy.resume.sections.skill.Skills;
-import com.developerxy.resume.sections.skill.Tech;
+import com.developerxy.resume.sections.skill.Skill;
 
 /**
  * Created by Mohammed Aouf ZOUAG on 18/04/2017.
  */
 @PersonalInfo(
         ownerName = @OwnerName("Mohammed Aouf ZOUAG"),
-        ownerDescription = @OwnerDescription("Java/Android developer."),
+        ownerDescription = @OwnerDescription("Développeur Java/Android"),
         email = @Email("mohammedaoufzouag@outlook.com"),
         website = @Website("www.developerxy.io"),
         phoneNumber = @PhoneNumber("+212694363053")
@@ -44,12 +44,21 @@ import com.developerxy.resume.sections.skill.Tech;
 @Projects({
         @Project(name = "Topik", description = "une application Android de messagerie instantanée réalisée avec Node.js, socket.io, OkHttp3, Picasso & MySQL"),
         @Project(name = "World Weather", description = "une application Android de météo géo-localisée avec l'API Google Maps V2 & Forecast.io"),
-        @Project(name = "Spicasso", description = "une application Android de visualisation, téléchargement & upload des photos avec PHP, Retrofit2 & Picasso.")
+        @Project(name = "Spicasso", description = "une application Android de visualisation, téléchargement & upload des photos avec PHP, Retrofit2 & Picasso."),
+        @Project(name = "Contacts", description = "une application de gestion des contacts avec SQLite qui suivie les recommandations du Material Design."),
+        @Project(name = "Naval Battles", description = "un jeu 2D réalisé avec le langage C & les libraries SDL & FMOD."),
+        @Project(name = "Tic-Swing-Toe", description = "un jeu de morpions avec intelligence artificielle, en Java Swing."),
+        @Project(name = "TTT", description = "un jeu de morpions multijoueur en temps réel pour Android avec Socket.io")
 })
 @Skills({
-        @Tech(name = "Java", related = {"Java8", "Swing", "JavaFX8", "JavaEE", "Struts2", "JSF", "Spring"}),
-        @Tech(name = "Android", related = {"Picasso", "Retrofit2", "OkHttp3", "Google Play Services", "Material Design"}),
-        @Tech(name = "Python", related = {"Python 2.x/3.x", "TKinter", "Flask", "Kivy", "SQLAlchemy"})
+        @Skill(name = "Java", related = {"Java8", "Swing", "JavaFX8", "JavaEE", "Struts2", "JSF", "Spring"}),
+        @Skill(name = "Android", related = {"Picasso", "Retrofit2", "OkHttp3", "Google Play Services", "Material Design"}),
+        @Skill(name = "Python", related = {"Python 2.x/3.x", "TKinter", "Flask", "Kivy", "SQLAlchemy"}),
+        @Skill(name = "Web", related = {"PHP", "Node.js", "Express", "React.js", "Gulp", "Bower", "NPM"}),
+        @Skill(name = "SGBDs", related = {"MySQL", "Oracle"}),
+        @Skill(name = "NoSQL", related = {"MongoDB", "Firebase"}),
+        @Skill(name = "VCS", related = {"Git"}),
+        @Skill(name = "Systèmes de construction", related = {"Maven", "Gradle"})
 })
 @Accounts({
         @Account(icon = "images/stackoverflow.png", nickname = "MohammedAoufZouag"),
