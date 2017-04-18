@@ -5,6 +5,7 @@ package com.developerxy.resume;
  */
 public class App {
     public static void main(String[] args) {
-
+        CV resume = new MyCV();
+        resume.build();
     }
 }
