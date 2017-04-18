@@ -14,6 +14,7 @@ import com.developerxy.resume.sections.skill.Skill;
 import com.developerxy.resume.sections.skill.Skills;
 import com.developerxy.resume.util.HTMLWriter;
 import com.developerxy.resume.util.Output;
+import com.developerxy.resume.util.Stylesheets;
 
 import java.util.Arrays;
 import java.util.StringJoiner;
@@ -21,6 +22,7 @@ import java.util.StringJoiner;
 /**
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
  */
+@Stylesheets({"style.css"})
 public abstract class CV {
 
     private HTMLWriter htmlWriter;
@@ -35,7 +37,7 @@ public abstract class CV {
             this.htmlWriter = htmlWriter;
             htmlWriter.setDoctype()
                     .writeOpeningTag("html")
-                    .writeContent(getHeadRawText())
+                    .writeContent(getHeadRawText(cls))
                     .writeOpeningTag("body")
                     .writeOpeningTagWithClass("div", "wrapper");
 
@@ -204,13 +206,18 @@ public abstract class CV {
         return String.format("<div class=\"row\">\n<span class=\"keyword\">%s: </span>%s</div>", model.getName(), sj.toString());
     }
 
-    private String getHeadRawText() {
-        return "<head>\n" +
+    private String getHeadRawText(Class<?> cls) {
+        String[] stylesheets = cls.getAnnotation(Stylesheets.class).value();
+        StringJoiner sj = new StringJoiner("\n");
+        Arrays.asList(stylesheets)
+                .forEach(stylesheet -> sj.add(String.format("<link rel=\"stylesheet\" href=\"%s\">", stylesheet)));
+
+        return String.format("<head>\n" +
                 "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
                 "        <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet'\n" +
                 "              type='text/css'>\n" +
-                "        <link rel=\"stylesheet\" href=\"./style.css\">\n" +
-                "    </head>";
+                "        %s\n" +
+                "    </head>", sj.toString());
     }
 
     private String getFormattedHeader(PersonalInfoModel model) {
