@@ -1,7 +1,5 @@
 package com.developerxy.resume.util.writer;
 
-import com.developerxy.resume.util.HTMLWriter;
-
 /**
  * Created by Mohammed Aouf ZOUAG on 19/04/2017.
  */

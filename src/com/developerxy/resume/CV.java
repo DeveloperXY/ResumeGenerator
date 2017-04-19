@@ -1,6 +1,7 @@
 package com.developerxy.resume;
 
-import com.developerxy.resume.util.HTMLWriter;
+import com.developerxy.resume.util.Utils;
+import com.developerxy.resume.util.writer.HTMLWriter;
 import com.developerxy.resume.util.Output;
 import com.developerxy.resume.util.Stylesheets;
 import com.developerxy.resume.util.formatter.HeaderFormatter;
@@ -40,9 +41,12 @@ public abstract class CV {
 
             System.out.println(String.format(
                     "The resume has been successfully created in the following location: %s", outputLocation));
+            Utils.openFileInBrowser(outputLocation);
+
         } catch (Exception e) {
             System.err.println("An error occured while generating the resume.");
             e.printStackTrace();
         }
     }
+
 }

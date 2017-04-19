@@ -1,6 +1,6 @@
 package com.developerxy.resume.util.writer.builder;
 
-import com.developerxy.resume.util.HTMLWriter;
+import com.developerxy.resume.util.writer.HTMLWriter;
 import com.developerxy.resume.util.writer.*;
 
 /**

@@ -1,4 +1,4 @@
-package com.developerxy.resume.util;
+package com.developerxy.resume.util.writer;
 
 import com.developerxy.resume.util.formatter.HTMLFormatter;
 
