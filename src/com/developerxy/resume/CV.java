@@ -1,6 +1,5 @@
 package com.developerxy.resume;
 
-import com.developerxy.resume.models.*;
 import com.developerxy.resume.sections.acc.Account;
 import com.developerxy.resume.sections.acc.Accounts;
 import com.developerxy.resume.sections.exp.Experience;
@@ -15,9 +14,9 @@ import com.developerxy.resume.sections.skill.Skills;
 import com.developerxy.resume.util.HTMLWriter;
 import com.developerxy.resume.util.Output;
 import com.developerxy.resume.util.Stylesheets;
+import com.developerxy.resume.util.format.*;
 
 import java.util.Arrays;
-import java.util.StringJoiner;
 
 /**
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
@@ -31,13 +30,14 @@ public abstract class CV {
     public void build() {
         Class<?> cls = getClass();
         String outputLocation = cls.getAnnotation(Output.class).value();
+        Stylesheets stylesheets = cls.getAnnotation(Stylesheets.class);
         this.outputLocation = outputLocation;
 
         try (HTMLWriter htmlWriter = new HTMLWriter(outputLocation)) {
             this.htmlWriter = htmlWriter;
             htmlWriter.setDoctype()
                     .writeOpeningTag("html")
-                    .writeContent(getHeadRawText(cls))
+                    .writeContent(new HeaderFormatter(stylesheets))
                     .writeOpeningTag("body")
                     .writeOpeningTagWithClass("div", "wrapper");
 
@@ -59,8 +59,8 @@ public abstract class CV {
     }
 
     private void writePersonalInfo(Class<?> cls) {
-        htmlWriter.writeContent(getFormattedHeader(
-                new PersonalInfoModel(cls.getAnnotation(PersonalInfo.class))));
+        htmlWriter.writeContent(new PersonalInfoFormatter(
+                cls.getAnnotation(PersonalInfo.class)));
     }
 
     private void writeSections(Class<?> cls) {
@@ -90,8 +90,7 @@ public abstract class CV {
     }
 
     private void writeExperience(Experience experience) {
-        htmlWriter.writeContent(getFormattedExperienceText(
-                new ExperienceModel(experience)));
+        htmlWriter.writeContent(new ExperienceFormatter(experience));
     }
 
     private void writeFormations(Class<?> cls) {
@@ -105,8 +104,7 @@ public abstract class CV {
     }
 
     private void writeFormation(Formation formation) {
-        htmlWriter.writeContent(getFormattedFormationText(
-                new FormationModel(formation)));
+        htmlWriter.writeContent(new FormationFormatter(formation));
     }
 
     private void writeAccounts(Class<?> cls) {
@@ -117,8 +115,7 @@ public abstract class CV {
     }
 
     private void writeAccount(Account account) {
-        htmlWriter.writeContent(getFormattedAccountText(
-                new AccountModel(account)));
+        htmlWriter.writeContent(new AccountFormatter(account));
     }
 
     private void writeProjects(Class<?> cls) {
@@ -134,8 +131,7 @@ public abstract class CV {
     }
 
     private void writeProject(Project project) {
-        htmlWriter.writeContent(getFormattedProjectText(
-                new ProjectModel(project)));
+        htmlWriter.writeContent(new ProjectFormatter(project));
     }
 
     private void writeSkills(Class<?> cls) {
@@ -151,89 +147,7 @@ public abstract class CV {
     }
 
     private void writeSkill(Skill skill) {
-        htmlWriter.writeContent(getFormattedSkillText(
-                new SkillsModel(skill)));
+        htmlWriter.writeContent(new SkillFormatter(skill));
     }
 
-    private String getFormattedExperienceText(ExperienceModel model) {
-        return String.format("<div class=\"content row\">\n" +
-                        "                            <span class=\"title\">\n" +
-                        "                                %s\n" +
-                        "                            </span>\n" +
-                        "                            <br/>\n" +
-                        "                            <span class=\"date\">\n" +
-                        "                                %s\n" +
-                        "                            </span>\n" +
-                        "                            <br/>\n" +
-                        "                            <span class=\"text\">\n" +
-                        "                                %s\n" +
-                        "                            </span>\n" +
-                        "                        </div>",
-                model.getTitle(), model.getWhen(), model.getDescription());
-    }
-
-    private String getFormattedFormationText(FormationModel model) {
-        return String.format("<div class=\"content row\">\n" +
-                        "                            <span class=\"title keyword\">\n" +
-                        "                                %s\n" +
-                        "                            </span>\n" +
-                        "                            <br/>\n" +
-                        "                            <span class=\"text\">\n" +
-                        "                                %s\n" +
-                        "                            </span>\n" +
-                        "                        </div>",
-                model.getWhen(), model.getDescription());
-    }
-
-    private String getFormattedAccountText(AccountModel model) {
-        return String.format("<div class=\"social\">\n" +
-                        "                        <img class=\"social-icon\" src=\"%s\">\n" +
-                        "                        <span class=\"social-nickname\">@%s</span>\n" +
-                        "                    </div>",
-                model.getIcon(), model.getNickname());
-    }
-
-    private String getFormattedProjectText(ProjectModel model) {
-        return String.format("<div class=\"text row\"><span class=\"keyword\">%s</span>, %s</div>",
-                model.getName(), model.getDescription());
-    }
-
-    private String getFormattedSkillText(SkillsModel model) {
-        StringJoiner sj = new StringJoiner(", ");
-        Arrays.asList(model.getRelated())
-                .forEach(item -> sj.add(String.format("<span>%s</span>\n", item)));
-
-        return String.format("<div class=\"row\">\n<span class=\"keyword\">%s: </span>%s</div>", model.getName(), sj.toString());
-    }
-
-    private String getHeadRawText(Class<?> cls) {
-        String[] stylesheets = cls.getAnnotation(Stylesheets.class).value();
-        StringJoiner sj = new StringJoiner("\n");
-        Arrays.asList(stylesheets)
-                .forEach(stylesheet -> sj.add(String.format("<link rel=\"stylesheet\" href=\"%s\">", stylesheet)));
-
-        return String.format("<head>\n" +
-                "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
-                "        <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet'\n" +
-                "              type='text/css'>\n" +
-                "        %s\n" +
-                "    </head>", sj.toString());
-    }
-
-    private String getFormattedHeader(PersonalInfoModel model) {
-        return String.format("<div class=\"header\">\n" +
-                        "                <div class=\"profile_image\"></div>\n" +
-                        "                <div class=\"name\">\n" +
-                        "                    <span>%s</span>\n" +
-                        "                    <span>%s</span>\n" +
-                        "                </div>\n" +
-                        "                <div class=\"details\">\n" +
-                        "                    <span>e: %s</span>\n" +
-                        "                    <span>w: %s</span>\n" +
-                        "                    <span>m: %s</span>\n" +
-                        "                </div>\n" +
-                        "            </div>",
-                model.getOwnerName(), model.getOwnerDescription(), model.getEmail(),
-                model.getWebsite(), model.getPhoneNumber());
-    }
 }

@@ -1,5 +1,7 @@
 package com.developerxy.resume.util;
 
+import com.developerxy.resume.util.format.HTMLFormatter;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
@@ -39,6 +41,11 @@ public class HTMLWriter implements AutoCloseable {
 
     public HTMLWriter writeContent(String content) {
         out.println(content);
+        return this;
+    }
+
+    public HTMLWriter writeContent(HTMLFormatter htmlFormatter) {
+        out.println(htmlFormatter.format());
         return this;
     }
 
