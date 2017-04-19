@@ -1,6 +1,6 @@
 package com.developerxy.resume.util;
 
-import com.developerxy.resume.util.format.HTMLFormatter;
+import com.developerxy.resume.util.formatter.HTMLFormatter;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
