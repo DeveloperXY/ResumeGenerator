@@ -1,23 +1,29 @@
 package com.developerxy.resume;
 
 import com.developerxy.resume.section.personal.PersonalInfo;
-import com.developerxy.resume.util.Output;
+import com.developerxy.resume.util.OutputFileName;
 import com.developerxy.resume.util.Stylesheets;
 import com.developerxy.resume.util.Utils;
 import com.developerxy.resume.util.formatter.HeaderFormatter;
 import com.developerxy.resume.util.writer.HTMLWriter;
 import com.developerxy.resume.util.writer.builder.SectionBuilder;
 
+import java.io.File;
+
 /**
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
  */
-@Output("generated/index.html")
+@OutputFileName("generated/index.html")
 @Stylesheets({"style.css"})
 public abstract class CV {
     public void build() {
         Class<?> cls = getClass();
-        String outputLocation = cls.getAnnotation(Output.class).value();
+        String outputLocation = cls.getAnnotation(OutputFileName.class).value();
         Stylesheets stylesheets = cls.getAnnotation(Stylesheets.class);
+
+        if (isOutputFileADirectory(outputLocation))
+            throw new IllegalArgumentException(
+                    "The @OutputFileName must refer to a file name, not a directory's.");
 
         try (HTMLWriter htmlWriter = new HTMLWriter(outputLocation)) {
             SectionBuilder sectionBuilder = new SectionBuilder(htmlWriter, cls);
@@ -48,14 +54,16 @@ public abstract class CV {
                     "The resume has been successfully created in the following location: %s", outputLocation));
             Utils.openFileInBrowser(outputLocation);
 
-        } catch (IllegalStateException e) {
+        } catch (IllegalStateException | IllegalArgumentException e) {
             System.err.println("Error while generating resume: " + e.getMessage());
-        }
-
-        catch(Exception e){
+        } catch (Exception e) {
             System.err.println("An error occur while generating the resume.");
             e.printStackTrace();
         }
     }
 
+    private boolean isOutputFileADirectory(String outputLocation) {
+        File file = new File(outputLocation);
+        return file.isDirectory();
+    }
 }
