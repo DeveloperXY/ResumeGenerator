@@ -15,11 +15,9 @@ public class HTMLWriter implements AutoCloseable {
     private String mOutputLocation;
 
     public HTMLWriter(String outputLocation) {
-        System.out.println("1. " + outputLocation);
         try {
             if (outputLocation.startsWith("/"))
                 outputLocation = outputLocation.substring(1);
-            System.out.println("2. " + outputLocation);
 
             mOutputLocation = outputLocation;
             File file = new File(outputLocation);
@@ -28,7 +26,6 @@ public class HTMLWriter implements AutoCloseable {
             if (parentFile == null) {
                 // Specify a default directory for the output file
                 mOutputLocation = OUTPUT_DIRECTORY + "/" + outputLocation;
-                System.out.println("3. " + mOutputLocation);
                 File newFile = new File(mOutputLocation);
                 File newParentFile = newFile.getParentFile();
                 if (!newParentFile.exists()) {
@@ -38,7 +35,6 @@ public class HTMLWriter implements AutoCloseable {
                 }
             }
             else {
-                System.out.println("4. " + outputLocation);
                 if (!parentFile.exists()) {
                     if (!parentFile.mkdirs()) {
                         throw new IllegalStateException("Unable to create output directory.");
@@ -46,7 +42,6 @@ public class HTMLWriter implements AutoCloseable {
                 }
             }
 
-            System.out.println("5. " + mOutputLocation);
             out = new PrintWriter(mOutputLocation);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
