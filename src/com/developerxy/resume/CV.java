@@ -1,15 +1,12 @@
 package com.developerxy.resume;
 
 import com.developerxy.resume.section.personal.PersonalInfo;
+import com.developerxy.resume.util.FileUtils;
 import com.developerxy.resume.util.OutputFileName;
 import com.developerxy.resume.util.Stylesheets;
-import com.developerxy.resume.util.Utils;
 import com.developerxy.resume.util.formatter.HeaderFormatter;
 import com.developerxy.resume.util.writer.HTMLWriter;
 import com.developerxy.resume.util.writer.builder.SectionBuilder;
-
-import java.io.File;
-import java.util.Arrays;
 
 /**
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
@@ -22,8 +19,8 @@ public abstract class CV {
         String outputLocation = cls.getAnnotation(OutputFileName.class).value();
         Stylesheets stylesheets = cls.getAnnotation(Stylesheets.class);
 
-        checkIfOutputFileIsADirectory(outputLocation);
-        checkIfOutputFileHasHtmlExtension(outputLocation);
+        FileUtils.checkIfOutputFileIsADirectory(outputLocation);
+        FileUtils.checkIfOutputFileHasHtmlExtension(outputLocation);
 
         try (HTMLWriter htmlWriter = new HTMLWriter(outputLocation)) {
             SectionBuilder sectionBuilder = new SectionBuilder(htmlWriter, cls);
@@ -52,7 +49,7 @@ public abstract class CV {
 
             System.out.println(String.format(
                     "The resume has been successfully created in the following location: %s", outputLocation));
-            Utils.openFileInBrowser(outputLocation);
+            FileUtils.openFileInBrowser(outputLocation);
 
         } catch (IllegalStateException | IllegalArgumentException e) {
             System.err.println("Error while generating resume: " + e.getMessage());
@@ -60,20 +57,5 @@ public abstract class CV {
             System.err.println("An error occur while generating the resume.");
             e.printStackTrace();
         }
-    }
-
-    private void checkIfOutputFileIsADirectory(String outputLocation) throws IllegalArgumentException {
-        File file = new File(outputLocation);
-        if (file.isDirectory())
-            throw new IllegalArgumentException(
-                    "The @OutputFileName must refer to a file name, not a directory's.");
-    }
-
-    private void checkIfOutputFileHasHtmlExtension(String outputLocation) {
-        String extension = outputLocation.substring(outputLocation.lastIndexOf(".") + 1);
-        if (!Arrays.asList("html", "htm").contains(extension))
-            throw new IllegalArgumentException(String.format(
-                    "Invalid extension \".%s\" for the output file. It must have a `.html` extension.",
-                    extension));
     }
 }
