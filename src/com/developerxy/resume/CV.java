@@ -1,5 +1,6 @@
 package com.developerxy.resume;
 
+import com.developerxy.resume.section.personal.PersonalInfo;
 import com.developerxy.resume.util.Utils;
 import com.developerxy.resume.util.writer.HTMLWriter;
 import com.developerxy.resume.util.Output;
@@ -26,13 +27,16 @@ public abstract class CV {
                     .writeOpeningTag("body")
                     .writeOpeningTagWithClass("div", "wrapper");
 
+            // Check that the resume class is @PersonalInfo annotated
+            PersonalInfo personalInfo = cls.getAnnotation(PersonalInfo.class);
+            if (personalInfo == null) {
+                System.err.println("You must annotate your resume class with the @PersonalInfo annotation to provide personal information data.");
+                System.exit(0);
+            }
+
             sectionBuilder.buildPersonalInfoSection();
             htmlWriter.writeOpeningTagWithClass("div", "main");
-            sectionBuilder.buildExperienceSection()
-                    .buildFormationSection()
-                    .buildProjectsSection()
-                    .buildSkillsSection()
-                    .buildAccountsSection();
+            sectionBuilder.buildResumeSections(this);
 
             htmlWriter.writeClosingTag("div")
                     .writeClosingTag("div")
