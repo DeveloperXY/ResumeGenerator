@@ -9,6 +9,7 @@ import com.developerxy.resume.util.writer.HTMLWriter;
 import com.developerxy.resume.util.writer.builder.SectionBuilder;
 
 import java.io.File;
+import java.util.Arrays;
 
 /**
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
@@ -21,9 +22,8 @@ public abstract class CV {
         String outputLocation = cls.getAnnotation(OutputFileName.class).value();
         Stylesheets stylesheets = cls.getAnnotation(Stylesheets.class);
 
-        if (isOutputFileADirectory(outputLocation))
-            throw new IllegalArgumentException(
-                    "The @OutputFileName must refer to a file name, not a directory's.");
+        checkIfOutputFileIsADirectory(outputLocation);
+        checkIfOutputFileHasHtmlExtension(outputLocation);
 
         try (HTMLWriter htmlWriter = new HTMLWriter(outputLocation)) {
             SectionBuilder sectionBuilder = new SectionBuilder(htmlWriter, cls);
@@ -62,8 +62,18 @@ public abstract class CV {
         }
     }
 
-    private boolean isOutputFileADirectory(String outputLocation) {
+    private void checkIfOutputFileIsADirectory(String outputLocation) throws IllegalArgumentException {
         File file = new File(outputLocation);
-        return file.isDirectory();
+        if (file.isDirectory())
+            throw new IllegalArgumentException(
+                    "The @OutputFileName must refer to a file name, not a directory's.");
+    }
+
+    private void checkIfOutputFileHasHtmlExtension(String outputLocation) {
+        String extension = outputLocation.substring(outputLocation.lastIndexOf(".") + 1);
+        if (!Arrays.asList("html", "htm").contains(extension))
+            throw new IllegalArgumentException(String.format(
+                    "Invalid extension \".%s\" for the output file. It must have a `.html` extension.",
+                    extension));
     }
 }
