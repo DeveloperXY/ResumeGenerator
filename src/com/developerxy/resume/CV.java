@@ -2,7 +2,7 @@ package com.developerxy.resume;
 
 import com.developerxy.resume.section.personal.PersonalInfo;
 import com.developerxy.resume.util.FileUtils;
-import com.developerxy.resume.util.OutputFileName;
+import com.developerxy.resume.util.OutputLocation;
 import com.developerxy.resume.util.Stylesheets;
 import com.developerxy.resume.util.formatter.HeaderFormatter;
 import com.developerxy.resume.util.writer.HTMLWriter;
@@ -11,20 +11,20 @@ import com.developerxy.resume.util.writer.builder.SectionBuilder;
 /**
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
  */
-@OutputFileName("generated/index.html")
+@OutputLocation
 @Stylesheets({"style.css"})
 public abstract class CV {
     public void build() {
         Class<?> cls = getClass();
-        String outputLocation = cls.getAnnotation(OutputFileName.class).value();
         Stylesheets stylesheets = cls.getAnnotation(Stylesheets.class);
+        OutputLocation outputLocation = cls.getAnnotation(OutputLocation.class);
+        String outputFileName = FileUtils.getOutputFileName(outputLocation);
 
-        FileUtils.checkIfOutputFileIsADirectory(outputLocation);
-        FileUtils.checkIfOutputFileHasHtmlExtension(outputLocation);
+        checkOutputFileRequiredCriteria(outputFileName);
 
-        try (HTMLWriter htmlWriter = new HTMLWriter(outputLocation)) {
+        try (HTMLWriter htmlWriter = new HTMLWriter(outputFileName)) {
             SectionBuilder sectionBuilder = new SectionBuilder(htmlWriter, cls);
-            outputLocation = htmlWriter.getOutputLocation();
+            outputFileName = htmlWriter.getOutputLocation();
 
             htmlWriter.setDoctype()
                     .writeOpeningTag("html")
@@ -49,8 +49,8 @@ public abstract class CV {
                     .writeClosingTag("html");
 
             System.out.println(String.format(
-                    "The resume has been successfully created in the following location: %s", outputLocation));
-            FileUtils.openFileInBrowser(outputLocation);
+                    "The resume has been successfully created in the following location: %s", outputFileName));
+            FileUtils.openFileInBrowser(outputFileName);
 
         } catch (IllegalStateException | IllegalArgumentException e) {
             System.err.println("Error while generating resume: " + e.getMessage());
@@ -58,5 +58,13 @@ public abstract class CV {
             System.err.println("An error occur while generating the resume.");
             e.printStackTrace();
         }
+    }
+
+    private void checkOutputFileRequiredCriteria(String outputLocation) {
+        if (FileUtils.isFileADirectory(outputLocation)) {
+            throw new IllegalArgumentException(
+                    "The @OutputFileName must refer to a file name, not a directory's.");
+        }
+        FileUtils.checkIfOutputFileHasHtmlExtension(outputLocation);
     }
 }
