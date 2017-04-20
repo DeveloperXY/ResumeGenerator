@@ -19,11 +19,6 @@ public class FileUtils {
         System.out.println("Opening browser...");
     }
 
-    public static boolean isFileADirectory(String fileName) {
-        File file = new File(fileName);
-        return file.isDirectory();
-    }
-
     public static void checkIfOutputFileHasHtmlExtension(String outputLocation) {
         String extension = outputLocation.substring(outputLocation.lastIndexOf(".") + 1);
         if (!Arrays.asList("html", "htm").contains(extension))
@@ -51,5 +46,15 @@ public class FileUtils {
             outputFileName = outputFileName.substring(1);
 
         return outputDirectory + outputFileName;
+    }
+
+    public static void createOutputPath(String outputLocation) throws IllegalStateException {
+        File file = new File(outputLocation);
+        File parentFile = file.getParentFile();
+        if (!parentFile.exists()) {
+            if (!parentFile.mkdirs()) {
+                throw new IllegalStateException("Unable to create output directory.");
+            }
+        }
     }
 }

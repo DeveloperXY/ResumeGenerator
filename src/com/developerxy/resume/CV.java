@@ -24,7 +24,6 @@ public abstract class CV {
 
         try (HTMLWriter htmlWriter = new HTMLWriter(outputFileName)) {
             SectionBuilder sectionBuilder = new SectionBuilder(htmlWriter, cls);
-            outputFileName = htmlWriter.getOutputLocation();
 
             htmlWriter.setDoctype()
                     .writeOpeningTag("html")
@@ -60,11 +59,13 @@ public abstract class CV {
         }
     }
 
+    /**
+     * @param outputLocation the path of the output file to be created.
+     *                       This method checks if the output file name has a .html extension
+     *                       & creates its necessary parent directories.
+     */
     private void checkOutputFileRequiredCriteria(String outputLocation) {
-        if (FileUtils.isFileADirectory(outputLocation)) {
-            throw new IllegalArgumentException(
-                    "The @OutputFileName must refer to a file name, not a directory's.");
-        }
         FileUtils.checkIfOutputFileHasHtmlExtension(outputLocation);
+        FileUtils.createOutputPath(outputLocation);
     }
 }
