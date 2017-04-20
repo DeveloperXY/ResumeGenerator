@@ -2,6 +2,7 @@ package com.developerxy.resume.util.writer;
 
 import com.developerxy.resume.util.formatter.HTMLFormatter;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
@@ -13,6 +14,15 @@ public class HTMLWriter implements AutoCloseable {
 
     public HTMLWriter(String outputLocation) {
         try {
+            File file = new File(outputLocation);
+            File parentFile = file.getParentFile();
+
+            if (!parentFile.exists()) {
+                if (!parentFile.mkdirs()) {
+                    throw new IllegalStateException("Unable to create output directory.");
+                }
+            }
+
             out = new PrintWriter(outputLocation);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

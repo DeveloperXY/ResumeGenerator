@@ -1,16 +1,17 @@
 package com.developerxy.resume;
 
 import com.developerxy.resume.section.personal.PersonalInfo;
-import com.developerxy.resume.util.Utils;
-import com.developerxy.resume.util.writer.HTMLWriter;
 import com.developerxy.resume.util.Output;
 import com.developerxy.resume.util.Stylesheets;
+import com.developerxy.resume.util.Utils;
 import com.developerxy.resume.util.formatter.HeaderFormatter;
+import com.developerxy.resume.util.writer.HTMLWriter;
 import com.developerxy.resume.util.writer.builder.SectionBuilder;
 
 /**
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
  */
+@Output("generated/index.html")
 @Stylesheets({"style.css"})
 public abstract class CV {
     public void build() {
@@ -47,8 +48,12 @@ public abstract class CV {
                     "The resume has been successfully created in the following location: %s", outputLocation));
             Utils.openFileInBrowser(outputLocation);
 
-        } catch (Exception e) {
-            System.err.println("An error occured while generating the resume.");
+        } catch (IllegalStateException e) {
+            System.err.println("Error while generating resume: " + e.getMessage());
+        }
+
+        catch(Exception e){
+            System.err.println("An error occur while generating the resume.");
             e.printStackTrace();
         }
     }
