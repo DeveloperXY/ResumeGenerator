@@ -24,6 +24,7 @@ public abstract class CV {
 
         try (HTMLWriter htmlWriter = new HTMLWriter(outputLocation)) {
             SectionBuilder sectionBuilder = new SectionBuilder(htmlWriter, cls);
+            outputLocation = htmlWriter.getOutputLocation();
 
             htmlWriter.setDoctype()
                     .writeOpeningTag("html")
