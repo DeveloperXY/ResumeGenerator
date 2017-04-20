@@ -7,6 +7,7 @@ import com.developerxy.resume.section.personal.PersonalInfo;
  */
 public class PersonalInfoModel {
     private String ownerName;
+    private String avatar;
     private String ownerDescription;
     private String email;
     private String website;
@@ -14,6 +15,7 @@ public class PersonalInfoModel {
 
     public PersonalInfoModel(PersonalInfo personalInfo) {
         ownerName = personalInfo.ownerName();
+        avatar = personalInfo.avatar();
         ownerDescription = personalInfo.ownerDescription();
         email = personalInfo.email();
         website = personalInfo.website();
@@ -22,6 +24,10 @@ public class PersonalInfoModel {
 
     public String getOwnerName() {
         return ownerName;
+    }
+
+    public String getAvatar() {
+        return avatar;
     }
 
     public String getOwnerDescription() {
@@ -38,5 +44,29 @@ public class PersonalInfoModel {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setOwnerDescription(String ownerDescription) {
+        this.ownerDescription = ownerDescription;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

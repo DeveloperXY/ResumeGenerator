@@ -6,16 +6,10 @@ import com.developerxy.resume.section.acc.Account;
 /**
  * Created by Mohammed Aouf ZOUAG on 19/04/2017.
  */
-public class AccountFormatter implements HTMLFormatter<Account> {
-
-    private String mResourcesRepository;
-
-    public AccountFormatter() {
-        this("");
-    }
+public class AccountFormatter extends WithResourcesFormatter<Account> {
 
     public AccountFormatter(String resourcesRepository) {
-        mResourcesRepository = resourcesRepository;
+        super(resourcesRepository);
     }
 
     @Override

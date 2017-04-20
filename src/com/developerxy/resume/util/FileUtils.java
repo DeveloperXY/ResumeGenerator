@@ -12,6 +12,7 @@ import java.util.Arrays;
 public class FileUtils {
 
     public static final String DEFAULT_TOP_LEVEL_DIRECTORY_NAME = "generated/";
+    public static final String DEFAULT_RESOURCES_DIRECTORY = "resources";
 
     public static void openFileInBrowser(String url) {
         try {
@@ -101,7 +102,6 @@ public class FileUtils {
                     "}\n" +
                     "\n" +
                     ".profile_image {\n" +
-                    "    content: url(resources/images/avatar.jpg);\n" +
                     "    width: 90px;\n" +
                     "    height: 90px;\n" +
                     "    border-radius: 50px;\n" +

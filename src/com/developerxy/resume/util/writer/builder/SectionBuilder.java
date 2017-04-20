@@ -6,7 +6,6 @@ import com.developerxy.resume.section.exp.Experiences;
 import com.developerxy.resume.section.formation.Formations;
 import com.developerxy.resume.section.proj.Projects;
 import com.developerxy.resume.section.skill.Skills;
-import com.developerxy.resume.util.ResourceRepository;
 import com.developerxy.resume.util.formatter.*;
 import com.developerxy.resume.util.writer.*;
 
@@ -15,8 +14,11 @@ import com.developerxy.resume.util.writer.*;
  */
 public class SectionBuilder {
 
-    public SectionBuilder(HTMLWriter htmlWriter, Class<?> cls) {
+    private String resourcesRepository;
+
+    public SectionBuilder(HTMLWriter htmlWriter, Class<?> cls, String resourcesRepository) {
         SectionWriter.initialize(cls, htmlWriter);
+        this.resourcesRepository = resourcesRepository;
     }
 
     /**
@@ -26,6 +28,7 @@ public class SectionBuilder {
      */
     public void buildResumeSections(CV resume) {
         Class<?> cls = resume.getClass();
+
         Experiences experiences = cls.getAnnotation(Experiences.class);
         Formations formations = cls.getAnnotation(Formations.class);
         Projects projects = cls.getAnnotation(Projects.class);
@@ -41,11 +44,11 @@ public class SectionBuilder {
         if (skills != null)
             buildSkillsSection();
         if (accounts != null)
-            buildAccountsSection(cls);
+            buildAccountsSection();
     }
 
     public SectionBuilder buildPersonalInfoSection() {
-        new PersonalInfoWriter(new PersonalInfoFormatter()).writeSection();
+        new PersonalInfoWriter(new PersonalInfoFormatter(resourcesRepository)).writeSection();
         return this;
     }
 
@@ -69,10 +72,8 @@ public class SectionBuilder {
         return this;
     }
 
-    public SectionBuilder buildAccountsSection(Class<?> cls) {
-        String resourceRepository = cls.getAnnotation(ResourceRepository.class).value();
-        System.out.println(resourceRepository);
-        new AccountWriter(new AccountFormatter(resourceRepository)).writeSection();
+    public SectionBuilder buildAccountsSection() {
+        new AccountWriter(new AccountFormatter(resourcesRepository)).writeSection();
         return this;
     }
 }

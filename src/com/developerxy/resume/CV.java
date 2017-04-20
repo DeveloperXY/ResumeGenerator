@@ -8,11 +8,13 @@ import com.developerxy.resume.util.formatter.HeaderFormatter;
 import com.developerxy.resume.util.writer.HTMLWriter;
 import com.developerxy.resume.util.writer.builder.SectionBuilder;
 
+import static com.developerxy.resume.util.FileUtils.DEFAULT_RESOURCES_DIRECTORY;
+
 /**
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
  */
 @OutputLocation
-@ResourceRepository("resources")
+@ResourceRepository(DEFAULT_RESOURCES_DIRECTORY)
 public abstract class CV {
 
     private static final String STYLESHEET_FILE = "styles.css";
@@ -26,7 +28,8 @@ public abstract class CV {
         checkOutputFileRequiredCriteria();
 
         try (HTMLWriter htmlWriter = new HTMLWriter(outputFileName)) {
-            SectionBuilder sectionBuilder = new SectionBuilder(htmlWriter, cls);
+            String resourcesRepository = cls.getAnnotation(ResourceRepository.class).value();
+            SectionBuilder sectionBuilder = new SectionBuilder(htmlWriter, cls, resourcesRepository);
 
             htmlWriter.setDoctype()
                     .writeOpeningTag("html")

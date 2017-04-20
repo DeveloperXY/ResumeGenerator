@@ -10,6 +10,7 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 public @interface PersonalInfo {
     String ownerName();
+    String avatar();
     String ownerDescription();
     String email();
     String website();
