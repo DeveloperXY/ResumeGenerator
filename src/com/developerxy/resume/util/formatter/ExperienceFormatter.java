@@ -6,17 +6,11 @@ import com.developerxy.resume.section.exp.Experience;
 /**
  * Created by Mohammed Aouf ZOUAG on 19/04/2017.
  */
-public class ExperienceFormatter extends HTMLFormatter<ExperienceModel> {
-    public ExperienceFormatter(ExperienceModel model) {
-        super(model);
-    }
-
-    public ExperienceFormatter(Experience experience) {
-        super(new ExperienceModel(experience));
-    }
+public class ExperienceFormatter implements HTMLFormatter<Experience> {
 
     @Override
-    public String format() {
+    public String format(Experience experience) {
+        ExperienceModel model = new ExperienceModel(experience);
         return String.format("<div class=\"content row\">\n" +
                         "                            <span class=\"title\">\n" +
                         "                                %s\n" +

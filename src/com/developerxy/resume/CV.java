@@ -28,7 +28,7 @@ public abstract class CV {
 
             htmlWriter.setDoctype()
                     .writeOpeningTag("html")
-                    .writeContent(new HeaderFormatter(STYLESHEET_FILE))
+                    .writeContent(new HeaderFormatter().format(STYLESHEET_FILE))
                     .writeOpeningTag("body")
                     .writeOpeningTagWithClass("div", "wrapper");
 

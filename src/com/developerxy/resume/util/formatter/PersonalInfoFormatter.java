@@ -6,17 +6,11 @@ import com.developerxy.resume.section.personal.PersonalInfo;
 /**
  * Created by Mohammed Aouf ZOUAG on 19/04/2017.
  */
-public class PersonalInfoFormatter extends HTMLFormatter<PersonalInfoModel> {
-    public PersonalInfoFormatter(PersonalInfoModel model) {
-        super(model);
-    }
-
-    public PersonalInfoFormatter(PersonalInfo personalInfo) {
-        super(new PersonalInfoModel(personalInfo));
-    }
+public class PersonalInfoFormatter implements HTMLFormatter<PersonalInfo> {
 
     @Override
-    public String format() {
+    public String format(PersonalInfo personalInfo) {
+        PersonalInfoModel model = new PersonalInfoModel(personalInfo);
         return String.format("<div class=\"header\">\n" +
                         "                <div class=\"profile_image\"></div>\n" +
                         "                <div class=\"name\">\n" +

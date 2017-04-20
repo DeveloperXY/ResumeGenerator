@@ -6,17 +6,11 @@ import com.developerxy.resume.section.formation.Formation;
 /**
  * Created by Mohammed Aouf ZOUAG on 19/04/2017.
  */
-public class FormationFormatter extends HTMLFormatter<FormationModel> {
-    public FormationFormatter(FormationModel model) {
-        super(model);
-    }
-
-    public FormationFormatter(Formation formation) {
-        super(new FormationModel(formation));
-    }
+public class FormationFormatter implements HTMLFormatter<Formation> {
 
     @Override
-    public String format() {
+    public String format(Formation formation) {
+        FormationModel model = new FormationModel(formation);
         return String.format("<div class=\"content row\">\n" +
                         "                            <span class=\"title keyword\">\n" +
                         "                                %s\n" +

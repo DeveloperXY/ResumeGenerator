@@ -5,11 +5,11 @@ import com.developerxy.resume.section.skill.Skill;
 /**
  * Created by Mohammed Aouf ZOUAG on 18/04/2017.
  */
-public class SkillsModel {
+public class SkillModel {
     private String name;
     private String[] related;
 
-    public SkillsModel(Skill skill) {
+    public SkillModel(Skill skill) {
         name = skill.name();
         related = skill.related();
     }

@@ -6,6 +6,7 @@ import com.developerxy.resume.section.exp.Experiences;
 import com.developerxy.resume.section.formation.Formations;
 import com.developerxy.resume.section.proj.Projects;
 import com.developerxy.resume.section.skill.Skills;
+import com.developerxy.resume.util.formatter.*;
 import com.developerxy.resume.util.writer.*;
 
 /**
@@ -43,32 +44,32 @@ public class SectionBuilder {
     }
 
     public SectionBuilder buildPersonalInfoSection() {
-        new PersonalInfoWriter().writeSection();
+        new PersonalInfoWriter(new PersonalInfoFormatter()).writeSection();
         return this;
     }
 
     public SectionBuilder buildExperienceSection() {
-        new ExperienceWriter().writeSection();
+        new ExperienceWriter(new ExperienceFormatter()).writeSection();
         return this;
     }
 
     public SectionBuilder buildFormationSection() {
-        new FormationWriter().writeSection();
+        new FormationWriter(new FormationFormatter()).writeSection();
         return this;
     }
 
     public SectionBuilder buildProjectsSection() {
-        new ProjectWriter().writeSection();
+        new ProjectWriter(new ProjectFormatter()).writeSection();
         return this;
     }
 
     public SectionBuilder buildSkillsSection() {
-        new SkillWriter().writeSection();
+        new SkillWriter(new SkillFormatter()).writeSection();
         return this;
     }
 
     public SectionBuilder buildAccountsSection() {
-        new AccountWriter().writeSection();
+        new AccountWriter(new AccountFormatter()).writeSection();
         return this;
     }
 }

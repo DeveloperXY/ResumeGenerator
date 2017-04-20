@@ -1,6 +1,6 @@
 package com.developerxy.resume.util.formatter;
 
-import com.developerxy.resume.model.SkillsModel;
+import com.developerxy.resume.model.SkillModel;
 import com.developerxy.resume.section.skill.Skill;
 
 import java.util.Arrays;
@@ -9,17 +9,11 @@ import java.util.StringJoiner;
 /**
  * Created by Mohammed Aouf ZOUAG on 19/04/2017.
  */
-public class SkillFormatter extends HTMLFormatter<SkillsModel> {
-    public SkillFormatter(SkillsModel model) {
-        super(model);
-    }
-
-    public SkillFormatter(Skill skill) {
-        super(new SkillsModel(skill));
-    }
+public class SkillFormatter implements HTMLFormatter<Skill> {
 
     @Override
-    public String format() {
+    public String format(Skill skill) {
+        SkillModel model = new SkillModel(skill);
         StringJoiner sj = new StringJoiner(", ");
         Arrays.asList(model.getRelated())
                 .forEach(item -> sj.add(String.format("<span>%s</span>\n", item)));
