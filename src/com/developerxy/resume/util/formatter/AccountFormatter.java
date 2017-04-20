@@ -8,9 +8,26 @@ import com.developerxy.resume.section.acc.Account;
  */
 public class AccountFormatter implements HTMLFormatter<Account> {
 
+    private String mResourcesRepository;
+
+    public AccountFormatter() {
+        this("");
+    }
+
+    public AccountFormatter(String resourcesRepository) {
+        mResourcesRepository = resourcesRepository;
+    }
+
     @Override
     public String format(Account account) {
         AccountModel model = new AccountModel(account);
+        if (!mResourcesRepository.isEmpty()) {
+            model.setIcon(mResourcesRepository + "/" + model.getIcon());
+        }
+        return formatModel(model);
+    }
+
+    private String formatModel(AccountModel model) {
         return String.format("<div class=\"social\">\n" +
                         "                        <img class=\"social-icon\" src=\"%s\">\n" +
                         "                        <span class=\"social-nickname\">@%s</span>\n" +

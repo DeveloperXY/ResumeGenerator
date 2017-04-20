@@ -3,6 +3,7 @@ package com.developerxy.resume;
 import com.developerxy.resume.section.personal.PersonalInfo;
 import com.developerxy.resume.util.FileUtils;
 import com.developerxy.resume.util.OutputLocation;
+import com.developerxy.resume.util.ResourceRepository;
 import com.developerxy.resume.util.formatter.HeaderFormatter;
 import com.developerxy.resume.util.writer.HTMLWriter;
 import com.developerxy.resume.util.writer.builder.SectionBuilder;
@@ -11,6 +12,7 @@ import com.developerxy.resume.util.writer.builder.SectionBuilder;
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
  */
 @OutputLocation
+@ResourceRepository("resources")
 public abstract class CV {
 
     private static final String STYLESHEET_FILE = "styles.css";

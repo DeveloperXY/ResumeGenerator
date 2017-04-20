@@ -6,6 +6,7 @@ import com.developerxy.resume.section.exp.Experiences;
 import com.developerxy.resume.section.formation.Formations;
 import com.developerxy.resume.section.proj.Projects;
 import com.developerxy.resume.section.skill.Skills;
+import com.developerxy.resume.util.ResourceRepository;
 import com.developerxy.resume.util.formatter.*;
 import com.developerxy.resume.util.writer.*;
 
@@ -40,7 +41,7 @@ public class SectionBuilder {
         if (skills != null)
             buildSkillsSection();
         if (accounts != null)
-            buildAccountsSection();
+            buildAccountsSection(cls);
     }
 
     public SectionBuilder buildPersonalInfoSection() {
@@ -68,8 +69,10 @@ public class SectionBuilder {
         return this;
     }
 
-    public SectionBuilder buildAccountsSection() {
-        new AccountWriter(new AccountFormatter()).writeSection();
+    public SectionBuilder buildAccountsSection(Class<?> cls) {
+        String resourceRepository = cls.getAnnotation(ResourceRepository.class).value();
+        System.out.println(resourceRepository);
+        new AccountWriter(new AccountFormatter(resourceRepository)).writeSection();
         return this;
     }
 }

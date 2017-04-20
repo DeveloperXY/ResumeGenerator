@@ -1,14 +1,18 @@
 package com.developerxy.resume.util;
 
 import java.awt.*;
-import java.io.*;
-import java.nio.channels.FileChannel;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 
 /**
  * Created by Mohammed Aouf ZOUAG on 19/04/2017.
  */
 public class FileUtils {
+
+    public static final String DEFAULT_TOP_LEVEL_DIRECTORY_NAME = "generated/";
+
     public static void openFileInBrowser(String url) {
         try {
             File htmlFile = new File(url);
@@ -97,7 +101,7 @@ public class FileUtils {
                     "}\n" +
                     "\n" +
                     ".profile_image {\n" +
-                    "    content: url(images/avatar.jpg);\n" +
+                    "    content: url(resources/images/avatar.jpg);\n" +
                     "    width: 90px;\n" +
                     "    height: 90px;\n" +
                     "    border-radius: 50px;\n" +

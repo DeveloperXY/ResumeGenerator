@@ -14,6 +14,10 @@ public class AccountModel {
         nickname = account.nickname();
     }
 
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     public String getIcon() {
         return icon;
     }

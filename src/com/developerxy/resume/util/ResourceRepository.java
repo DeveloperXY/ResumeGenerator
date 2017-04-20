@@ -8,7 +8,6 @@ import java.lang.annotation.*;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface OutputLocation {
-    String directory() default FileUtils.DEFAULT_TOP_LEVEL_DIRECTORY_NAME;
-    String fileName() default "index.html";
+public @interface ResourceRepository {
+    String value();
 }
