@@ -1,8 +1,8 @@
 package com.developerxy.resume.util;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.channels.FileChannel;
 import java.util.Arrays;
 
 /**
@@ -55,6 +55,22 @@ public class FileUtils {
             if (!parentFile.mkdirs()) {
                 throw new IllegalStateException("Unable to create output directory.");
             }
+        }
+    }
+
+    public static void generateStylesheetFile(String htmlFileLocation, String cssFileName) {
+        try {
+            File outputDirectory = new File(htmlFileLocation).getParentFile();
+            String cssFileLocation = outputDirectory + "/" + cssFileName;
+            File resourceStylesheet = new File("style.css");
+            File generatedStylesheet = new File(cssFileLocation);
+
+            FileChannel src = new FileInputStream(resourceStylesheet).getChannel();
+            FileChannel dest = new FileOutputStream(generatedStylesheet).getChannel();
+            dest.transferFrom(src, 0, src.size());
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

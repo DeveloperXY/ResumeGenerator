@@ -3,7 +3,6 @@ package com.developerxy.resume;
 import com.developerxy.resume.section.personal.PersonalInfo;
 import com.developerxy.resume.util.FileUtils;
 import com.developerxy.resume.util.OutputLocation;
-import com.developerxy.resume.util.Stylesheets;
 import com.developerxy.resume.util.formatter.HeaderFormatter;
 import com.developerxy.resume.util.writer.HTMLWriter;
 import com.developerxy.resume.util.writer.builder.SectionBuilder;
@@ -12,22 +11,24 @@ import com.developerxy.resume.util.writer.builder.SectionBuilder;
  * Created by Mohammed Aouf ZOUAG on 17/04/2017.
  */
 @OutputLocation
-@Stylesheets({"style.css"})
 public abstract class CV {
+
+    private static final String STYLESHEET_FILE = "styles.css";
+    private String outputFileName;
+
     public void build() {
         Class<?> cls = getClass();
-        Stylesheets stylesheets = cls.getAnnotation(Stylesheets.class);
         OutputLocation outputLocation = cls.getAnnotation(OutputLocation.class);
-        String outputFileName = FileUtils.getOutputFileName(outputLocation);
+        outputFileName = FileUtils.getOutputFileName(outputLocation);
 
-        checkOutputFileRequiredCriteria(outputFileName);
+        checkOutputFileRequiredCriteria();
 
         try (HTMLWriter htmlWriter = new HTMLWriter(outputFileName)) {
             SectionBuilder sectionBuilder = new SectionBuilder(htmlWriter, cls);
 
             htmlWriter.setDoctype()
                     .writeOpeningTag("html")
-                    .writeContent(new HeaderFormatter(stylesheets))
+                    .writeContent(new HeaderFormatter(STYLESHEET_FILE))
                     .writeOpeningTag("body")
                     .writeOpeningTagWithClass("div", "wrapper");
 
@@ -60,12 +61,12 @@ public abstract class CV {
     }
 
     /**
-     * @param outputLocation the path of the output file to be created.
-     *                       This method checks if the output file name has a .html extension
-     *                       & creates its necessary parent directories.
+     * This method checks if the output file name has a .html extension
+     * & creates its necessary parent directories.
      */
-    private void checkOutputFileRequiredCriteria(String outputLocation) {
-        FileUtils.checkIfOutputFileHasHtmlExtension(outputLocation);
-        FileUtils.createOutputPath(outputLocation);
+    private void checkOutputFileRequiredCriteria() {
+        FileUtils.checkIfOutputFileHasHtmlExtension(outputFileName);
+        FileUtils.createOutputPath(outputFileName);
+        FileUtils.generateStylesheetFile(outputFileName, STYLESHEET_FILE);
     }
 }
