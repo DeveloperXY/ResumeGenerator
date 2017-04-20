@@ -9,5 +9,10 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface ResourceRepository {
+    /**
+     * @return the location of the resources directory to be used.
+     * This path is relative to the location of the resume's HTML file,
+     * as indicated via the @OutputLocation parameters.
+     */
     String value();
 }

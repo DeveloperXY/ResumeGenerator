@@ -39,10 +39,8 @@ public abstract class CV {
 
             // Check that the resume class is @PersonalInfo annotated
             PersonalInfo personalInfo = cls.getAnnotation(PersonalInfo.class);
-            if (personalInfo == null) {
-                System.err.println("You must annotate your resume class with the @PersonalInfo annotation to provide personal information data.");
-                System.exit(0);
-            }
+            if (personalInfo == null)
+                throw new IllegalArgumentException("You must annotate your resume class with the @PersonalInfo annotation to provide personal information data.");
 
             sectionBuilder.buildPersonalInfoSection();
             htmlWriter.writeOpeningTagWithClass("div", "main");
