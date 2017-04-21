@@ -30,19 +30,19 @@ public class SectionBuilder {
         Class<?> cls = resume.getClass();
 
         Experiences experiences = cls.getAnnotation(Experiences.class);
-        Trainings formations = cls.getAnnotation(Trainings.class);
+        Trainings trainings = cls.getAnnotation(Trainings.class);
         Projects projects = cls.getAnnotation(Projects.class);
         Skills skills = cls.getAnnotation(Skills.class);
         Accounts accounts = cls.getAnnotation(Accounts.class);
 
         if (experiences != null)
-            buildExperienceSection();
-        if (formations != null)
-            buildFormationSection();
+            buildExperienceSection(experiences.label());
+        if (trainings != null)
+            buildTrainingSection(trainings.label());
         if (projects != null)
-            buildProjectsSection();
+            buildProjectsSection(projects.label());
         if (skills != null)
-            buildSkillsSection();
+            buildSkillsSection(skills.label());
         if (accounts != null)
             buildAccountsSection();
     }
@@ -52,23 +52,31 @@ public class SectionBuilder {
         return this;
     }
 
-    public SectionBuilder buildExperienceSection() {
-        new ExperienceWriter(new ExperienceFormatter()).writeSection();
+    public SectionBuilder buildExperienceSection(String sectionLabel) {
+        new ExperienceWriter(new ExperienceFormatter())
+                .labeled(sectionLabel)
+                .writeSection();
         return this;
     }
 
-    public SectionBuilder buildFormationSection() {
-        new FormationWriter(new FormationFormatter()).writeSection();
+    public SectionBuilder buildTrainingSection(String sectionLabel) {
+        new TrainingWriter(new FormationFormatter())
+                .labeled(sectionLabel)
+                .writeSection();
         return this;
     }
 
-    public SectionBuilder buildProjectsSection() {
-        new ProjectWriter(new ProjectFormatter()).writeSection();
+    public SectionBuilder buildProjectsSection(String sectionLabel) {
+        new ProjectWriter(new ProjectFormatter())
+                .labeled(sectionLabel)
+                .writeSection();
         return this;
     }
 
-    public SectionBuilder buildSkillsSection() {
-        new SkillWriter(new SkillFormatter()).writeSection();
+    public SectionBuilder buildSkillsSection(String sectionLabel) {
+        new SkillWriter(new SkillFormatter())
+                .labeled(sectionLabel)
+                .writeSection();
         return this;
     }
 

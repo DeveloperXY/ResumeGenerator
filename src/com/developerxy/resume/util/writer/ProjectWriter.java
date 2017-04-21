@@ -18,7 +18,7 @@ public class ProjectWriter extends SectionWriter<Project> {
 
     @Override
     public void writeSection() {
-        writeSectionHeader("Projets réalisés");
+        writeSectionHeader(sectionLabel);
         mHTMLWriter.writeOpeningTagWithClass("div", "content");
 
         Project[] projects = mSourceClass.getAnnotation(Projects.class).value();

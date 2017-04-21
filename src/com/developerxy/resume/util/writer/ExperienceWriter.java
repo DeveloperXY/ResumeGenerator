@@ -17,7 +17,7 @@ public class ExperienceWriter extends SectionWriter<Experience> {
 
     @Override
     public void writeSection() {
-        writeSectionHeader("Expérience");
+        writeSectionHeader(sectionLabel);
         Experience[] experiences = mSourceClass.getAnnotation(Experiences.class).value();
         Arrays.asList(experiences).forEach(e ->
                 mHTMLWriter.writeContent(mFormatter.format(e)));

@@ -191,6 +191,7 @@ public class FileUtils {
                     "    margin-left: 10px;\n" +
                     "    width: 33%;\n" +
                     "    display: inline-flex;\n" +
+                    "    flex: 0 1 0%;\n" +
                     "}\n" +
                     "\n" +
                     ".social-icon {\n" +

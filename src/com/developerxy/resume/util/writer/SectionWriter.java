@@ -7,6 +7,7 @@ import com.developerxy.resume.util.formatter.HTMLFormatter;
  */
 public abstract class SectionWriter<T> {
 
+    protected String sectionLabel = "";
     protected static HTMLWriter mHTMLWriter;
     protected static Class<?> mSourceClass;
     protected HTMLFormatter<T> mFormatter;
@@ -26,6 +27,11 @@ public abstract class SectionWriter<T> {
                 .writeContent(label)
                 .writeClosingTag("div")
                 .writeOpeningTagWithClass("div", "content-wrapper");
+    }
+
+    public SectionWriter labeled(String label) {
+        sectionLabel = label;
+        return this;
     }
 
     public abstract void writeSection();

@@ -18,7 +18,7 @@ public class SkillWriter extends SectionWriter<Skill> {
 
     @Override
     public void writeSection() {
-        writeSectionHeader("Compétences");
+        writeSectionHeader(sectionLabel);
         mHTMLWriter.writeOpeningTagWithClass("div", "content");
 
         Skill[] skills = mSourceClass.getAnnotation(Skills.class).value();
