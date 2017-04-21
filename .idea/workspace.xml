@@ -7,47 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1411f59b-30a8-42bb-9493-2806d1d912c4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/CV.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/model/AccountModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/model/ExperienceModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/model/FormationModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/model/PersonalInfoModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/model/ProjectModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/model/SkillModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/section/acc/Account.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/section/acc/Accounts.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/section/exp/Experience.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/section/exp/Experiences.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/section/personal/PersonalInfo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/section/proj/Project.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/section/proj/Projects.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/section/skill/Skill.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/section/skill/Skills.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/section/training/Training.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/section/training/Trainings.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/FileUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/OutputLocation.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/ResourceRepository.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/formatter/AccountFormatter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/formatter/ExperienceFormatter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/formatter/FormationFormatter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/formatter/HTMLFormatter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/formatter/HeaderFormatter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/formatter/PersonalInfoFormatter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/formatter/ProjectFormatter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/formatter/SkillFormatter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/formatter/WithResourcesFormatter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/writer/AccountWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/writer/ExperienceWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/writer/HTMLWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/writer/PersonalInfoWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/writer/ProjectWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/writer/SectionWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/writer/SkillWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/writer/TrainingWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/developerxy/resume/util/writer/builder/SectionBuilder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -119,21 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OutputLocation.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OutputLocation.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/developerxy/resume/util/OutputLocation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+            <state relative-caret-position="168">
+              <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -305,6 +259,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ResumeGenerator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ResumeGenerator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ResumeGenerator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -864,12 +832,12 @@
       <workItem from="1492677659254" duration="8910000" />
       <workItem from="1492692538091" duration="5212000" />
       <workItem from="1492698665138" duration="7936000" />
-      <workItem from="1492755418834" duration="6918000" />
+      <workItem from="1492755418834" duration="7084000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61695000" />
+    <option name="totallyTimeSpent" value="61861000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1446,14 +1414,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/developerxy/resume/util/OutputLocation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/developerxy/resume/CV.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="559">
@@ -1466,8 +1426,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        <state relative-caret-position="144">
+          <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/developerxy/resume/util/OutputLocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
           <folding />
         </state>
       </provider>
