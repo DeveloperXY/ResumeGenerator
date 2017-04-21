@@ -3,7 +3,7 @@ package com.developerxy.resume.util.writer.builder;
 import com.developerxy.resume.CV;
 import com.developerxy.resume.section.acc.Accounts;
 import com.developerxy.resume.section.exp.Experiences;
-import com.developerxy.resume.section.formation.Formations;
+import com.developerxy.resume.section.training.Trainings;
 import com.developerxy.resume.section.proj.Projects;
 import com.developerxy.resume.section.skill.Skills;
 import com.developerxy.resume.util.formatter.*;
@@ -30,7 +30,7 @@ public class SectionBuilder {
         Class<?> cls = resume.getClass();
 
         Experiences experiences = cls.getAnnotation(Experiences.class);
-        Formations formations = cls.getAnnotation(Formations.class);
+        Trainings formations = cls.getAnnotation(Trainings.class);
         Projects projects = cls.getAnnotation(Projects.class);
         Skills skills = cls.getAnnotation(Skills.class);
         Accounts accounts = cls.getAnnotation(Accounts.class);

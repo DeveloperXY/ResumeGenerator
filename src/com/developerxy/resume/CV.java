@@ -55,8 +55,6 @@ public abstract class CV {
                     "The resume has been successfully created in the following location: %s", outputFileName));
             FileUtils.openFileInBrowser(outputFileName);
 
-        } catch (IllegalStateException | IllegalArgumentException e) {
-            System.err.println("Error while generating resume: " + e.getMessage());
         } catch (Exception e) {
             System.err.println("An error occur while generating the resume.");
             e.printStackTrace();
@@ -64,8 +62,8 @@ public abstract class CV {
     }
 
     /**
-     * This method checks if the output file name has a .html extension
-     * & creates its necessary parent directories.
+     * This method checks if the output file name has a .html extension,
+     * creates its necessary parent directories, & generates the stylesheet file to be associated with the resume.
      */
     private void checkOutputFileRequiredCriteria() {
         FileUtils.checkIfOutputFileHasHtmlExtension(outputFileName);

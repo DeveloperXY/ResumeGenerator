@@ -1,4 +1,4 @@
-package com.developerxy.resume.section.formation;
+package com.developerxy.resume.section.training;
 
 import java.lang.annotation.*;
 
@@ -8,6 +8,6 @@ import java.lang.annotation.*;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface Formations {
-    Formation[] value();
+public @interface Trainings {
+    Training[] value();
 }

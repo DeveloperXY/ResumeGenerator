@@ -1,4 +1,4 @@
-package com.developerxy.resume.section.formation;
+package com.developerxy.resume.section.training;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Formation {
+public @interface Training {
     String when();
     String description();
 }
