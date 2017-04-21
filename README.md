@@ -1,6 +1,9 @@
 # ResumeGenerator
 A Java API that relies on annotations to generate CVs in HTML format.
 
+# Prerequisites
+You need JDK8 or above to run this API.
+
 # Usage
 1. Create a class that extends the `CV` class (located in the `com.developerxy.resume` package):
 
@@ -19,3 +22,6 @@ to generate the sections of the resume that you want.
         new MyResume().build();
     }
 ~~~~
+
+# Documentation
+https://github.com/DeveloperXY/ResumeGenerator/wiki
