@@ -23,5 +23,9 @@ to generate the sections of the resume that you want.
     }
 ~~~~
 
+# Download
+The API is distributed as a JAR file, that you need to include in your project.
+First release: https://github.com/DeveloperXY/ResumeGenerator/releases/download/v1.0/ResumeGenerator.jar
+
 # Documentation
 https://github.com/DeveloperXY/ResumeGenerator/wiki
