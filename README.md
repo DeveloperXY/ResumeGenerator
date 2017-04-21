@@ -22,3 +22,6 @@ to generate the sections of the resume that you want.
         new MyResume().build();
     }
 ~~~~
+
+# Documentation
+https://github.com/DeveloperXY/ResumeGenerator/wiki
