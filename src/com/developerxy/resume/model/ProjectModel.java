@@ -5,7 +5,7 @@ import com.developerxy.resume.section.proj.Project;
 /**
  * Created by Mohammed Aouf ZOUAG on 18/04/2017.
  */
-public class ProjectModel {
+public class ProjectModel extends AbstractModel {
     private String name;
     private String description;
 
@@ -19,6 +19,6 @@ public class ProjectModel {
     }
 
     public String getDescription() {
-        return description;
+        return getLineBreakableContent(description);
     }
 }

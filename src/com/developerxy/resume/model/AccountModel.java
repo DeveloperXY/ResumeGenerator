@@ -5,7 +5,7 @@ import com.developerxy.resume.section.acc.Account;
 /**
  * Created by Mohammed Aouf ZOUAG on 18/04/2017.
  */
-public class AccountModel {
+public class AccountModel extends AbstractModel {
     private String icon;
     private String nickname;
 

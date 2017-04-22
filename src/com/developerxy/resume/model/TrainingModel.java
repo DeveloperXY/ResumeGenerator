@@ -5,11 +5,11 @@ import com.developerxy.resume.section.training.Training;
 /**
  * Created by Mohammed Aouf ZOUAG on 18/04/2017.
  */
-public class FormationModel {
+public class TrainingModel extends AbstractModel {
     private String when;
     private String description;
 
-    public FormationModel(Training formation) {
+    public TrainingModel(Training formation) {
         when = formation.when();
         description = formation.description();
     }
@@ -19,6 +19,6 @@ public class FormationModel {
     }
 
     public String getDescription() {
-        return description;
+        return getLineBreakableContent(description);
     }
 }

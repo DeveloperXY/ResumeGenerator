@@ -5,7 +5,7 @@ import com.developerxy.resume.section.personal.PersonalInfo;
 /**
  * Created by Mohammed Aouf ZOUAG on 18/04/2017.
  */
-public class PersonalInfoModel {
+public class PersonalInfoModel extends AbstractModel {
     private String ownerName;
     private String avatar;
     private String ownerDescription;

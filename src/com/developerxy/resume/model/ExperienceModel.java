@@ -5,7 +5,7 @@ import com.developerxy.resume.section.exp.Experience;
 /**
  * Created by Mohammed Aouf ZOUAG on 18/04/2017.
  */
-public class ExperienceModel {
+public class ExperienceModel extends AbstractModel {
     private String title;
     private String when;
     private String description;
@@ -25,6 +25,6 @@ public class ExperienceModel {
     }
 
     public String getDescription() {
-        return description;
+        return getLineBreakableContent(description);
     }
 }
