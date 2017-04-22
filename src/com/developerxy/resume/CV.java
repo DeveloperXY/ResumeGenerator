@@ -20,7 +20,7 @@ public abstract class CV {
     private static final String STYLESHEET_FILE = "styles.css";
     private String outputFileName;
 
-    public void build() {
+    public CV build() {
         Class<?> cls = getClass();
         OutputLocation outputLocation = cls.getAnnotation(OutputLocation.class);
         outputFileName = FileUtils.getOutputFileName(outputLocation);
@@ -53,12 +53,18 @@ public abstract class CV {
 
             System.out.println(String.format(
                     "The resume has been successfully created in the following location: %s", outputFileName));
-            FileUtils.openFileInBrowser(outputFileName);
+            return this;
 
         } catch (Exception e) {
             System.err.println("An error occur while generating the resume.");
             e.printStackTrace();
         }
+
+        return null;
+    }
+
+    public void openInBrowser() {
+        FileUtils.openFileInBrowser(outputFileName);
     }
 
     /**

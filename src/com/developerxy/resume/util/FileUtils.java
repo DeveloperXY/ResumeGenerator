@@ -16,12 +16,13 @@ public class FileUtils {
 
     public static void openFileInBrowser(String url) {
         try {
+            System.out.println("Opening browser...");
             File htmlFile = new File(url);
             Desktop.getDesktop().browse(htmlFile.toURI());
         } catch (IOException e) {
+            System.err.println("Unable to open file in browser.");
             e.printStackTrace();
         }
-        System.out.println("Opening browser...");
     }
 
     public static void checkIfOutputFileHasHtmlExtension(String outputLocation) {
