@@ -3,7 +3,6 @@ package com.developerxy.resume.util.writer;
 import com.developerxy.resume.section.proj.Project;
 import com.developerxy.resume.section.proj.Projects;
 import com.developerxy.resume.util.formatter.HTMLFormatter;
-import com.developerxy.resume.util.formatter.ProjectFormatter;
 
 import java.util.Arrays;
 

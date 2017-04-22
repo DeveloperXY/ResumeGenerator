@@ -3,7 +3,6 @@ package com.developerxy.resume.util.writer;
 import com.developerxy.resume.section.skill.Skill;
 import com.developerxy.resume.section.skill.Skills;
 import com.developerxy.resume.util.formatter.HTMLFormatter;
-import com.developerxy.resume.util.formatter.SkillFormatter;
 
 import java.util.Arrays;
 

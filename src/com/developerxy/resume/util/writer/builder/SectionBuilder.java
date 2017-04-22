@@ -1,6 +1,6 @@
 package com.developerxy.resume.util.writer.builder;
 
-import com.developerxy.resume.CV;
+import com.developerxy.resume.Resume;
 import com.developerxy.resume.section.acc.Accounts;
 import com.developerxy.resume.section.exp.Experiences;
 import com.developerxy.resume.section.training.Trainings;
@@ -26,7 +26,7 @@ public class SectionBuilder {
      *               This method checks for annotations that are present on the resume class
      *               & builds its sections accordingly.
      */
-    public void buildResumeSections(CV resume) {
+    public void buildResumeSections(Resume resume) {
         Class<?> cls = resume.getClass();
 
         Experiences experiences = cls.getAnnotation(Experiences.class);

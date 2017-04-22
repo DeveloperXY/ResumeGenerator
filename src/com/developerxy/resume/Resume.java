@@ -15,12 +15,12 @@ import static com.developerxy.resume.util.FileUtils.DEFAULT_RESOURCES_DIRECTORY;
  */
 @OutputLocation
 @ResourceRepository(DEFAULT_RESOURCES_DIRECTORY)
-public abstract class CV {
+public abstract class Resume {
 
     private static final String STYLESHEET_FILE = "styles.css";
     private String outputFileName;
 
-    public CV build() {
+    public Resume build() {
         Class<?> cls = getClass();
         OutputLocation outputLocation = cls.getAnnotation(OutputLocation.class);
         outputFileName = FileUtils.getOutputFileName(outputLocation);
