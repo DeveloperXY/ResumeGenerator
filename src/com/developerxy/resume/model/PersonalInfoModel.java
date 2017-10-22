@@ -10,16 +10,16 @@ public class PersonalInfoModel extends AbstractModel {
     private String avatar;
     private String ownerDescription;
     private String email;
-    private String website;
     private String phoneNumber;
+    private String address;
 
     public PersonalInfoModel(PersonalInfo personalInfo) {
         ownerName = personalInfo.ownerName();
         avatar = personalInfo.avatar();
         ownerDescription = personalInfo.ownerDescription();
         email = personalInfo.email();
-        website = personalInfo.website();
         phoneNumber = personalInfo.phoneNumber();
+        address = personalInfo.address();
     }
 
     public String getOwnerName() {
@@ -36,10 +36,6 @@ public class PersonalInfoModel extends AbstractModel {
 
     public String getEmail() {
         return email;
-    }
-
-    public String getWebsite() {
-        return website;
     }
 
     public String getPhoneNumber() {
@@ -62,11 +58,15 @@ public class PersonalInfoModel extends AbstractModel {
         this.email = email;
     }
 
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

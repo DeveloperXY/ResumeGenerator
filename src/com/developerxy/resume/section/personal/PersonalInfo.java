@@ -13,6 +13,6 @@ public @interface PersonalInfo {
     String avatar();
     String ownerDescription();
     String email();
-    String website();
     String phoneNumber();
+    String address();
 }

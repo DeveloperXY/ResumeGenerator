@@ -78,7 +78,7 @@ public class FileUtils {
                     "\n" +
                     "body {\n" +
                     "    background-color: #181818;\n" +
-                    "    font-family: 'Lato', helvetica, arial, sans-serif;\n" +
+                    "    font-family: 'Product Sans', helvetica, arial, sans-serif;\n" +
                     "    font-size: 16px;\n" +
                     "    color: #222;\n" +
                     "}\n" +
@@ -98,8 +98,13 @@ public class FileUtils {
                     "    border-bottom: 2px solid #cf8a05;\n" +
                     "}\n" +
                     "\n" +
-                    "div.details {\n" +
-                    "    margin-left: auto;\n" +
+                    "div.details > span {\n" +
+                    "    margin-top: 6px;\n" +
+                    "    font-style: italic;\n" +
+                    "}\n" +
+                    "\n" +
+                    "div.details > span:nth-last-child(-n + 2) {\n" +
+                    "    text-decoration: underline;\n" +
                     "}\n" +
                     "\n" +
                     ".profile_image {\n" +
@@ -116,17 +121,16 @@ public class FileUtils {
                     "}\n" +
                     "\n" +
                     "div.name span:first-child {\n" +
-                    "    font-size: 2em;\n" +
+                    "    font-size: 1.5em;\n" +
                     "    font-weight: 700;\n" +
-                    "    font-family: 'Rokkitt', Helvetica, Arial, sans-serif;\n" +
                     "}\n" +
                     "\n" +
                     "div.name span:last-child {\n" +
-                    "    font-size: 1.5em;\n" +
-                    "    font-family: 'Rokkitt', Helvetica, Arial, sans-serif\n" +
+                    "    font-size: 1em;\n" +
                     "}\n" +
                     "\n" +
                     "div.details {\n" +
+                    "    margin-left: auto;\n" +
                     "    display: flex;\n" +
                     "    flex-direction: column;\n" +
                     "    font-size: 0.9em;\n" +
@@ -146,7 +150,6 @@ public class FileUtils {
                     "\n" +
                     "div.section .label {\n" +
                     "    width: 25%;\n" +
-                    "    font-family: 'Rokkitt', Helvetica, Arial, sans-serif;\n" +
                     "    font-style: italic;\n" +
                     "    font-size: 1.5em;\n" +
                     "    color: #cf8a05;\n" +
@@ -164,7 +167,6 @@ public class FileUtils {
                     "}\n" +
                     "\n" +
                     "div.section .content span.title {\n" +
-                    "    font-family: 'Rokkitt', Helvetica, Arial, sans-serif;\n" +
                     "    font-size: 1.5em;\n" +
                     "    margin-bottom: -2px;\n" +
                     "}\n" +

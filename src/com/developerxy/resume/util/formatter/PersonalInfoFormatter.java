@@ -25,12 +25,12 @@ public class PersonalInfoFormatter extends WithResourcesFormatter<PersonalInfo> 
                         "                    <span>%s</span>\n" +
                         "                </div>\n" +
                         "                <div class=\"details\">\n" +
-                        "                    <span>e: %s</span>\n" +
-                        "                    <span>w: %s</span>\n" +
-                        "                    <span>m: %s</span>\n" +
+                        "                    <span>%s</span>\n" +
+                        "                    <span>%s</span>\n" +
+                        "                    <span>%s</span>\n" +
                         "                </div>\n" +
                         "            </div>",
                 model.getAvatar(), model.getOwnerName(), model.getOwnerDescription(),
-                model.getEmail(), model.getWebsite(), model.getPhoneNumber());
+                model.getEmail(), model.getPhoneNumber(), model.getAddress());
     }
 }
