@@ -157,6 +157,7 @@ public class FileUtils {
                     "\n" +
                     "div.section .content-wrapper {\n" +
                     "    width: 75%;\n" +
+                    "    margin-top: 4px;\n" +
                     "}\n" +
                     "\n" +
                     "div.section .content span.text {\n" +
@@ -167,14 +168,16 @@ public class FileUtils {
                     "}\n" +
                     "\n" +
                     "div.section .content span.title {\n" +
-                    "    font-size: 1.5em;\n" +
+                    "    font-size: 1.2em;\n" +
                     "    margin-bottom: -2px;\n" +
+                    "    font-weight: bold;\n" +
                     "}\n" +
                     "\n" +
                     "div.section .content span.date {\n" +
                     "    font-size: 0.8em;\n" +
                     "    font-style: italic;\n" +
                     "    margin-bottom: 3px;\n" +
+                    "    color: darkgray;\n" +
                     "}\n" +
                     "\n" +
                     "div.skills {\n" +
@@ -198,13 +201,13 @@ public class FileUtils {
                     "}\n" +
                     "\n" +
                     ".social-icon {\n" +
-                    "    width: 60px;\n" +
-                    "    height: 60px;\n" +
+                    "    width: 40px;\n" +
+                    "    height: 40px;\n" +
                     "}\n" +
                     "\n" +
                     ".social-nickname {\n" +
+                    "    font-size: 0.8em;\n" +
                     "    margin-left: 6px;\n" +
-                    "    font-weight: bold;\n" +
                     "    position: relative;\n" +
                     "    transform: translateY(30%);\n" +
                     "}");
